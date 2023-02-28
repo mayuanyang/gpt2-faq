@@ -42,9 +42,17 @@ def load_model(train_steps, num_warmup_steps):
 def finetune(epochs, train_steps):
     warmup_steps = int(train_steps * epochs * 0.1)
 
-    train_dataset = get_dataset()
-    model = load_model(train_steps, warmup_steps)
-    train(model, train_dataset, epochs, train_steps)
+    tokenizer = load_tokenizer()
+
+    for _total_num, train_dataset in get_dataset():
+        model = init_model(
+            tokenizer, configs.model_path
+        )
+
+        train(model, train_dataset, epochs, train_steps)
+        del train_dataset
+        del model
+
 
 
 if __name__ == '__main__':

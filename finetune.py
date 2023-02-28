@@ -4,7 +4,7 @@ from transformers import GPT2Config, TFGPT2LMHeadModel
 from transformers import TextGenerationPipeline
 from official import nlp
 import official.nlp.optimization
-from train import load_tokenizer, train, get_dataset
+from train import load_tokenizer, train, get_dataset, init_model
 import tensorflow as tf
 from configs import finetune as configs
 import click
